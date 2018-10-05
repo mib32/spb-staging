@@ -424,7 +424,7 @@
 
   {% endif %}
 
-{{ 'script_p.js' | asset_url | script_tag }}
+{% comment pluginspeed replaced-js DON'T CHANGE %}{{ 'script_p.js' | asset_url | script_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'script_p.js', tag: 'script', liquid_tag: true -%}
 
 <script>
 (function() {
