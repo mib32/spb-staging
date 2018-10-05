@@ -1,0 +1,514 @@
+{% include 'variantstablevariables' %}
+<head>
+  <style>
+    div#variantstable_viewcartbtndiv
+    {
+      float: right;
+      margin-top: 10px;
+    }
+    div#variantstable_container
+    {
+      display: none;
+    }
+
+    input.variantstable_quantity
+    {
+      width: 80px;
+    }
+
+    table#variantstable_table>tbody>td
+    {
+      width: 20%;
+      padding: 2px;
+      text-align: center;
+
+    }
+
+    /* Smartphones (portrait and landscape) ----------- */
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+      /* Styles */
+      table#variantstable_table td
+      {
+        width: 20%;
+        padding: 2px;
+        text-align: center;
+      }
+    }
+
+    /* Smartphones (landscape) ----------- */
+    @media only screen and (min-width : 321px) {
+      /* Styles */
+      table#variantstable_table td
+      {
+        width: 20%;
+        padding: 2px;
+        text-align: center;
+      }
+    }
+
+    /* Smartphones (portrait) ----------- */
+    @media only screen and (max-width : 320px) {
+      /* Styles */
+      table#variantstable_table td
+      {
+        width: 20%;
+        padding: 2px;
+        text-align: center;
+      }
+    }
+
+    /* iPads (portrait and landscape) ----------- */
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+      /* Styles */
+
+    }
+
+    /* iPads (landscape) ----------- */
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+      /* Styles */
+    }
+
+    /* iPads (portrait) ----------- */
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+      /* Styles */
+    }
+    /**********
+    iPad 3
+    **********/
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+      /* Styles */
+    }
+
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+      /* Styles */
+    }
+    /* Desktops and laptops ----------- */
+    @media only screen  and (min-width : 1224px) {
+      /* Styles */
+    }
+
+    /* Large screens ----------- */
+    @media only screen  and (min-width : 1824px) {
+      /* Styles */
+    }
+
+    /* iPhone 4 ----------- */
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+      /* Styles */
+    }
+
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+      /* Styles */
+    }
+
+    /* iPhone 5 ----------- */
+    @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+      /* Styles */
+    }
+
+    @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+      /* Styles */
+    }
+
+    /* iPhone 6 ----------- */
+    @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+      /* Styles */
+    }
+
+    @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+      /* Styles */
+    }
+
+    /* iPhone 6+ ----------- */
+    @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+      /* Styles */
+    }
+
+    @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+      /* Styles */
+    }
+
+    /* Samsung Galaxy S3 ----------- */
+    @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+      /* Styles */
+    }
+
+    @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+      /* Styles */
+    }
+
+    /* Samsung Galaxy S4 ----------- */
+    @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+      /* Styles */
+    }
+
+    @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+      /* Styles */
+    }
+
+    /* Samsung Galaxy S5 ----------- */
+    @media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+      /* Styles */
+    }
+
+    @media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+      /* Styles */
+    }
+  </style>
+</head>
+<div id='variantstable_container'>
+  <h3>Variants</h3>
+  <table id='variantstable_table'>
+    <head>
+      <tr>     
+
+        {% for productoption in product.options_with_values %}
+        <th>{{ productoption.name }}</th>
+        {% endfor %}  
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Buy</th>
+      </tr>
+    </head>
+    <tbody>
+      {% assign optionNames = coloroptionnames | split: '_' %}          
+
+      {% assign coloroptionposition = 0 %}
+      {% for _option in product.options_with_values %}
+      {% assign _optionstring = _option.name | downcase %}
+      {% for optionname in optionNames %} 
+      {% assign optionname = optionname | downcase %}
+      {% if optionname == _optionstring %}
+      {% assign coloroptionposition = _option.position %}
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+      {% for variant in product.variants %}
+      <tr>
+
+        <!-- Option 1 -->
+        {% if variant.option1 != null %}
+        <td>
+          {% if coloroptionposition == 1 %}
+          <img style='object-fit: contain;' src='{{ variant.featured_image | img_url:'150x150' }}' width='60' height='60' />
+          {% else %}
+          {{ variant.option1 }}
+          {% endif %}
+        </td>
+        {% endif %}
+        <!-- Option 2 -->
+        {% if variant.option2 != null %}
+        <td>
+          {% if coloroptionposition == 2 %}
+          <img style='object-fit: contain;' src='{{ variant.featured_image | img_url:'150x150' }}' width='60' height='60' />
+          {% else %}
+          {{ variant.option2 }}
+          {% endif %}
+        </td>
+        {% endif %}
+
+        <!-- Option 3 -->
+        {% if variant.option3 != null %}
+        <td>
+
+          {% if coloroptionposition == 3 %}
+          <img style='object-fit: contain;' src='{{ variant.featured_image | img_url:'150x150' }}' width='60' height='60' />
+          {% else %}
+          {{ variant.option3 }}
+          {% endif %}
+        </td>
+        {% endif %}
+
+        <td>
+          <input type="hidden" data-variantid='{{ variant.id }}' class='variantstable_isquantity' id='variantstable_isquantity_{{ variant.id }}' name='variantstable_isquantity_{{ variant.id }}' value='false' />
+          <!--<button id='variantstable_minus_{{ variant.id }}' type="button" class="btn btn-minus">-</button>-->
+          <input id='variantstable_quantity_{{ variant.id }}' type="number" name="quantity" value="0" class="quantity variantstable_quantity">
+          <!--<button id='variantstable_plus_{{ variant.id }}' type="button" class="btn btn-plus">+</button>-->
+        </td>
+        <td>
+          <span data-price='{{ variant.price | times:0.01 }}' id='variantstable_price_{{ variant.id }}'>{{ variant.price | money }}</span>
+        </td>
+        <td>
+          <button id='variantstableatcbtn_{{ variant.id }}' class='btn variantstable_buybtn'>Buy</button>
+        </td>
+      </tr>
+
+      {% endfor %}      
+    </tbody>
+
+  </table>
+  <div id='variantstable_viewcartbtndiv'>
+    <button id='variantstable_viewcartbtn' class='btn'><span id='variantstable_totalprice'></span> <span id='variantstable_viewcartbtnspan'>View Cart</span></button>
+  </div>
+</div>
+<script type="text/javascript">
+  (function () {
+
+    /* Load Script function we may need to load jQuery from the Google's CDN */
+    /* That code is world-reknown. */
+    /* One source: http://snipplr.com/view/18756/loadscript/ */
+
+    var loadScript = function (url, callback) {
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+
+      // If the browser is Internet Explorer.
+      if (script.readyState) {
+        script.onreadystatechange = function () {
+          if (script.readyState == "loaded" || script.readyState == "complete") {
+            script.onreadystatechange = null;
+            callback();
+          }
+        };
+        // For any other browser.
+      } else {
+        script.onload = function () {
+          callback();
+        };
+      }
+
+      script.src = url;
+      document.getElementsByTagName("head")[0].appendChild(script);
+
+    };
+
+    /* This is my app's JavaScript */
+    var myAppJavaScript = function ($) {
+      // $ in this scope references the jQuery object we'll use.
+      // Don't use jQuery, or jQuery191, use the dollar sign.
+      // Do this and do that, using $.
+
+      var domainname = window.location.hostname;
+      domainname = domainname.replace('.com', '');
+      var url = window.location.href;
+      var pathslist = url.split('/');
+      var laststring = pathslist[pathslist.length - 1];
+      var productstring = pathslist[pathslist.length - 2];
+      var shopname = window.location.hostname;
+
+      // RGB to Hexa Conversion
+      var rgbToHex = function (rgb) {
+        var hex = Number(rgb).toString(16);
+        if (hex.length < 2) {
+          hex = "0" + hex;
+        }
+        return hex;
+      };
+
+      var fullColorHex = function (r, g, b) {
+        var red = rgbToHex(r);
+        var green = rgbToHex(g);
+        var blue = rgbToHex(b);
+        return red + green + blue;
+      };
+
+
+
+
+      // Remove Attributes
+      $.fn.removeAttributes = function () {
+        return this.each(function () {
+          var attributes = $.map(this.attributes, function (item) {
+            return item.name;
+          });
+          var img = $(this);
+          $.each(attributes, function (i, item) {
+            img.removeAttr(item);
+          });
+        });
+      }
+
+      // Get Parameter Value
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+
+      function resizeImages(imgsrc, size) {
+
+        imgsrc = imgsrc.replace('_small', '');
+        imgsrc = imgsrc.replace('_grande', '');
+        imgsrc = imgsrc.replace('_medium', '');
+        imgsrc = imgsrc.replace('_large', '');
+
+        var imageextensionList = imgsrc.split('.');
+        var imageextensionstring = imageextensionList[imageextensionList.length - 1];
+        var imageextension = imageextensionstring.split('?')[0];
+
+        if (imageextension == 'jpg') {
+          imgsrc = imgsrc.replace('.jpg', '_' + size + 'x' + size + '.jpg');
+        }
+        if (imageextension == 'jpeg') {
+          imgsrc = imgsrc.replace('.jpeg', '_' + size + 'x' + size + '.jpeg');
+        }
+        if (imageextension == 'png') {
+          imgsrc = imgsrc.replace('.png', '_' + size + 'x' + size + '.png');
+        }
+        return imgsrc;
+
+      }
+
+
+
+      $.extend({
+        getValues: function (url) {
+          var result = null;
+          $.ajax({
+            url: url,
+            type: 'get',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+              result = data;
+            }
+          });
+          return result;
+        }
+      });
+
+
+
+
+
+      var collectionstring = pathslist[pathslist.length - 2];
+      var domainname = window.location.hostname;
+
+      $(document).ready(function () {
+
+
+
+
+        var domainName = window.location.hostname;
+        //domainName = domainName.replace('.com', '');
+        domainName = domainName.replace('www.', '');
+        //domainName = 'shopthelookdemo.myshopify';
+
+        //var productfeaturedimagesrc = '{{ product.featured_image | img_url }}';
+
+        var variantstable_appvariables = $.getValues("https://variantswatches.apphb.com/Api/VariantsTable_AppVariables/GetVariables?DomainName=" + domainName);
+
+
+
+
+
+        if(variantstable_appvariables.VariantsTable_IsActive == true)
+        {
+          $('.variantstable_quantity').change(function(e){
+            var element = e.currentTarget;
+            var elementvalue = element.value * 1;
+            if(elementvalue < 0)
+            {
+              element.value = 1;
+            }
+          });
+
+          var currency = '{{ 0 | money }}';
+          var currencysymbol = currency.replace('0.00', '');
+
+
+          if(productstring == 'products')
+          {
+            var variantstablediv = document.getElementById('variantstable_container');
+            variantstablediv.style.display = 'block';
+            //variantstablediv.style.border = variantstable_appvariables.VariantsTable_HighlightThickness + 'px solid #' + variantstable_appvariables.VariantsTable_HighlightColor;
+            var buybuttons = document.querySelectorAll('.variantstable_buybtn');
+            for(var b=0; b<buybuttons.length; b++)
+            {
+              buybuttons[b].style.backgroundColor = '#' + variantstable_appvariables.VariantsTable_ButtonBGColor;
+              buybuttons[b].style.color = '#' + variantstable_appvariables.VariantsTable_ButtonTextColor;
+              buybuttons[b].style.fontSize =  variantstable_appvariables.VariantsTable_ButtonTextSize + 'px';
+              //buybuttons[b].innerHTML = variantstable_appvariables.VariantsTable_ButtonText;
+
+            }
+
+            var viewcartbtn = document.getElementById('variantstable_viewcartbtn');
+            viewcartbtn.style.backgroundColor = '#' + variantstable_appvariables.VariantsTable_ButtonBGColor;
+            viewcartbtn.style.color = '#' + variantstable_appvariables.VariantsTable_ButtonTextColor;
+            viewcartbtn.style.fontSize =  variantstable_appvariables.VariantsTable_ButtonTextSize + 'px';
+            document.getElementById('variantstable_viewcartbtnspan').innerHTML = variantstable_appvariables.VariantsTable_ButtonText;
+            
+            var addtocartform = $('form[action="/cart/add"]')[0];
+            $(addtocartform).before(variantstablediv);
+            $(addtocartform).hide();
+          }
+
+
+          $('#variantstable_viewcartbtn').click(function(){
+            window.location.href = 'https://' + window.location.hostname + '/cart';
+          });
+          $('.variantstable_buybtn').click(function(e){
+            var buybutton = e.currentTarget;
+            var buttonid = buybutton.id;
+            buttonid = buttonid.replace('variantstableatcbtn_', '');
+            var isquantityelement = document.getElementById('variantstable_isquantity_' + buttonid);
+            isquantityelement.value = 'true';
+            var isquantitylements = document.querySelectorAll('.variantstable_isquantity');
+            var totalprice = 0;
+
+            var _oldqty = document.getElementById('variantstable_quantity_' + buttonid).value * 1;
+            if(_oldqty == 0)
+            {
+              document.getElementById('variantstable_quantity_' + buttonid).value = _oldqty + 1;
+            }
+
+
+            for(var q=0; q<isquantitylements.length; q++)
+            {
+              if(isquantitylements[q].value == 'true')
+              {
+                var varaintid = isquantitylements[q].getAttribute('data-variantid');
+                var priceelement = document.getElementById('variantstable_price_' + varaintid);
+
+                var qtyelement = document.getElementById('variantstable_quantity_' + varaintid);
+
+                var pricevalue = priceelement.getAttribute('data-price') * 1;
+                console.log(qtyelement);
+                var quantity = qtyelement.value * 1;
+                var price = pricevalue * quantity;
+                totalprice = totalprice + price;
+              }
+            }
+            document.getElementById('variantstable_totalprice').innerText = currencysymbol + totalprice;
+            var variantid = buttonid;
+            buybutton.innerHTML = '✓';
+            buybutton.disabled = true;
+            var quantityElement = document.getElementById('variantstable_quantity_' + variantid);
+            var quantity = quantityElement.value;
+            // Adding To Cart
+            $.post('/cart/add.js', {
+              quantity: quantity,
+              id: variantid            
+            });
+
+          });
+        }
+
+
+
+
+      });
+
+    };
+
+    /* If jQuery has not yet been loaded or if it has but it's too old for our needs,
+        we will load jQuery from the Google CDN, and when it's fully loaded, we will run
+        our app's JavaScript. Set your own limits here, the sample's code below uses 1.9.1
+        as the minimum version we are ready to use, and if the jQuery is older, we load 1.9.1 */
+    if ((typeof jQuery === 'undefined') || (parseInt(jQuery.fn.jquery) === 1 && parseFloat(jQuery.fn.jquery.replace(/^1\./, "")) < 9.1)) {
+      loadScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function () {
+        jQuery191 = jQuery.noConflict(true);
+        myAppJavaScript(jQuery191);
+      });
+    } else {
+      myAppJavaScript(jQuery);
+    }
+
+  })();
+</script>

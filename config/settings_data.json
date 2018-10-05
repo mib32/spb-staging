@@ -1,490 +1,1184 @@
 {
   "current": {
-    "color_text": "#3d4246",
-    "color_body_text": "#69727b",
-    "color_sale_text": "#557b97",
-    "color_borders": "#e8e9eb",
-    "color_button": "#557b97",
-    "color_button_text": "#fff",
-    "color_small_button": "#fff",
-    "color_small_button_text": "#3d4246",
-    "color_text_field": "#fff",
-    "color_text_field_text": "#000",
-    "color_image_overlay_text": "#fff",
-    "color_image_overlay": "#3d4246",
-    "image_overlay_opacity": 40,
-    "color_body_bg": "#fff",
-    "type_header_font": "work_sans_n6",
-    "type_header_base_size": 26,
-    "type_base_font": "work_sans_n4",
-    "type_base_size": 16,
-    "type_bold_product_titles": false,
-    "share_image": "",
+    "color_primary": "#3c4550",
+    "color_secondary": "#dcdbdb",
+    "color_disabled": "#727070",
+    "color_accent": "#ffffff",
+    "color_body_bg": "#ffffff",
+    "color_borders": "#ececec",
+    "product_reviews_star_color": "#000000",
+    "color_header_background": "#000000",
+    "color_header_text": "#ffffff",
+    "color_header_cart_search": "#232323",
+    "color_nav_bg": "#232323",
+    "color_nav_text": "#ffffff",
+    "color_body_text": "#585858",
+    "color_heading_text": "#000",
+    "color_footer_bg": "#f2f2f2",
+    "color_footer_text": "#636363",
+    "color_footer_social_link": "#bbbbbb",
+    "type_base_family": "Google_Montserrat_400,700_sans",
+    "type_base_size": "14px",
+    "type_header_family": "Google_Montserrat_700_sans",
+    "type_header_transform": true,
+    "type_accent_family": "Google_Lato_700_sans",
+    "type_navigation_size": "15px",
+    "type_navigation_transform": true,
+    "type_button_size": "15px",
+    "type_button_transform": true,
+    "favicon": "shopify:\/\/shop_images\/rainbowfilter_21c6b572-8f5a-4a97-8e94-30a86e20bf42.png",
+    "cart_notes_enable": true,
+    "ajax_cart_method": "modal",
+    "social_twitter_link": "",
+    "social_facebook_link": "https:\/\/facebook.com\/gentlemans.clothing",
+    "social_pinterest_link": "",
+    "social_google_plus_link": "",
+    "social_instagram_link": "https:\/\/www.instagram.com\/gentlemans.clothing\/",
+    "social_snapchat_link": "",
+    "social_tumblr_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "social_fancy_link": "",
+    "social_sharing_style": "is-clean",
     "share_facebook": true,
     "share_twitter": true,
     "share_pinterest": true,
-    "social_twitter_link": "",
-    "social_facebook_link": "",
-    "social_pinterest_link": "",
-    "social_instagram_link": "",
-    "social_tumblr_link": "",
-    "social_snapchat_link": "",
-    "social_youtube_link": "",
-    "social_vimeo_link": "",
-    "favicon": "",
+    "superscript_decimals": true,
     "checkout_header_image": "",
-    "checkout_logo_image": "",
-    "checkout_logo_position": "left",
-    "checkout_logo_size": "medium",
+    "checkout_logo_image": "shopify:\/\/shop_images\/400hundo_shoppp.png",
+    "checkout_logo_position": "center",
+    "checkout_logo_size": "large",
     "checkout_body_background_image": "",
-    "checkout_body_background_color": "#fff",
+    "checkout_body_background_color": "#dbdbdb",
     "checkout_input_background_color_mode": "white",
     "checkout_sidebar_background_image": "",
-    "checkout_sidebar_background_color": "#fafafa",
-    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-    "checkout_accent_color": "#197bbd",
-    "checkout_button_color": "#197bbd",
-    "checkout_error_color": "#e32c2b",
+    "checkout_sidebar_background_color": "#595959",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#000000",
+    "checkout_button_color": "#000000",
+    "checkout_error_color": "#ff2d2d",
+    "collection_sidebar_filters": "tags",
     "sections": {
       "header": {
         "type": "header",
         "settings": {
-          "align_logo": "left",
-          "logo": "",
-          "logo_max_width": 100,
-          "main_linklist": "main-menu",
-          "message": false,
-          "home_page_only": true,
-          "message_text": "Announce something here",
-          "message_link": "",
-          "color_bg": "#7796a8",
-          "color_text": "#fff"
-        }
-      },
-      "hero": {
-        "type": "hero",
-        "settings": {
-          "image": "",
-          "alignment": "center",
-          "title": "Image with text overlay",
-          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.<\/p>",
-          "hero_size": "medium",
-          "text_size": "large",
-          "button_label": "",
-          "button_link": ""
-        }
-      },
-      "slideshow": {
-        "type": "slideshow",
-        "blocks": {
-          "slideshow-0": {
-            "type": "image",
-            "settings": {
-              "image": "",
-              "alignment": "top",
-              "title": "Image slide",
-              "subheading": "Tell your brand's story through video and images",
-              "link": ""
-            }
-          },
-          "slideshow-1": {
-            "type": "image",
-            "settings": {
-              "image": "",
-              "alignment": "top",
-              "title": "Image slide",
-              "subheading": "Tell your brand's story through video and images",
-              "link": ""
-            }
-          }
-        },
-        "block_order": [
-          "slideshow-0",
-          "slideshow-1"
-        ],
-        "settings": {
-          "autoplay": true,
-          "autoplay_speed": 7,
-          "slideshow_height": "small",
-          "text_size": "medium"
-        }
-      },
-      "featured-collections": {
-        "type": "collection",
-        "settings": {
-          "title": "Featured collection",
-          "collection": "frontpage",
-          "grid": 3,
-          "rows": 2,
-          "show_vendor": false,
-          "show_view_all": false
-        }
-      },
-      "feature-row": {
-        "type": "feature-row",
-        "settings": {
-          "image": "",
-          "layout": "left",
-          "title": "Image with text",
-          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-          "button_label": "",
-          "button_link": ""
+          "menu": "main-menu",
+          "logo": "shopify:\/\/shop_images\/whiteman.png",
+          "logo_max_width": "150",
+          "show_announcement": false,
+          "announcement_text": "Text Us: (833) 228-7968",
+          "announcement_link": "shopify:\/\/pages\/contact-us"
         }
       },
       "footer": {
         "type": "footer",
+        "blocks": {
+          "1534829756703": {
+            "type": "menu",
+            "settings": {
+              "title": "Customer Service",
+              "menu": "footer",
+              "width": "25%"
+            }
+          },
+          "menu": {
+            "type": "menu",
+            "settings": {
+              "title": "Company",
+              "menu": "company",
+              "width": "16%"
+            }
+          },
+          "1506708202781": {
+            "type": "text",
+            "settings": {
+              "title": "Our Promise",
+              "richtext": "<p>All our clothing &amp; garments are crafted by designers using only the highest quality&nbsp;materials &amp; standards to ensure you are dressing like a gentleman without breaking the bank.&nbsp;<\/p>",
+              "width": "25%"
+            }
+          },
+          "text": {
+            "type": "text",
+            "settings": {
+              "title": "Get in touch",
+              "richtext": "<p><a href=\"\/pages\/contact-us\" title=\"Contact Us\">(833) 228-7968<\/a><\/p>\n<p><a href=\"\/pages\/contact-us\" title=\"Contact Us\">Sales@GentlemanStore.us<\/a><\/p>",
+              "width": "25%"
+            }
+          },
+          "newsletter": {
+            "type": "newsletter",
+            "settings": {
+              "title": "Newsletter",
+              "width": "33%"
+            }
+          }
+        },
+        "block_order": [
+          "1534829756703",
+          "menu",
+          "1506708202781",
+          "text",
+          "newsletter"
+        ],
         "settings": {
-          "footer_linklist": "footer",
-          "footer_linklist_two": "",
-          "footer_newsletter_enable": false,
-          "footer_newsletter_subheading": "<p>A short sentence describing what someone will receive by subscribing<\/p>",
-          "show_payment_icons": false
+          "social_enabled": true,
+          "legal_menu": "legal-menu"
         }
       },
-      "1531487303559": {
-        "type": "homepage-instagram",
+      "collection-list": {
+        "type": "collection-list",
+        "blocks": {
+          "1502424777786": {
+            "type": "collection",
+            "settings": {
+              "collection": "maceoo"
+            }
+          },
+          "1502424758616": {
+            "type": "collection",
+            "settings": {
+              "collection": "ascot-ties"
+            }
+          },
+          "collection-list-1": {
+            "type": "collection",
+            "settings": {
+              "collection": "neckties"
+            }
+          },
+          "1501641318382": {
+            "type": "collection",
+            "settings": {
+              "collection": "skinny-ties"
+            }
+          },
+          "collection-list-0": {
+            "type": "collection",
+            "settings": {
+              "collection": "bowties"
+            }
+          },
+          "1502424773017": {
+            "type": "collection",
+            "settings": {
+              "collection": "watches"
+            }
+          }
+        },
+        "block_order": [
+          "1502424777786",
+          "1502424758616",
+          "collection-list-1",
+          "1501641318382",
+          "collection-list-0",
+          "1502424773017"
+        ],
         "settings": {
-          "show_instagram": true,
-          "instagram_bg_color": "#fff8ee",
-          "instagram_title": "#Ella On Instagram",
-          "instagram_des": "Phasellus lorem malesuada ligula pulvinar commodo maecenas suscipit auctom.",
-          "display_instagram_button": true,
-          "instagram_button_text": "View Gallery",
-          "instagram_button_link": "",
-          "user-id": "1599696966",
-          "accessToken": "1599696966.467ede5.0995bcf2188e4607bd092f5b29edaf99",
-          "limit": "10",
-          "images_per_row": "3",
-          "resolution_images": "thumbnail"
+        }
+      },
+      "list-collections-template": {
+        "type": "list-collections-template",
+        "blocks": {
+          "1501904572294": {
+            "type": "collection",
+            "settings": {
+              "collection": "lacoste"
+            }
+          },
+          "1501904560249": {
+            "type": "collection",
+            "settings": {
+              "collection": "maceoo"
+            }
+          },
+          "1532251292376": {
+            "type": "collection",
+            "settings": {
+              "collection": "gourmet-coffee"
+            }
+          },
+          "1501904517275": {
+            "type": "collection",
+            "settings": {
+              "collection": "gentleman-sets"
+            }
+          },
+          "1502429558634": {
+            "type": "collection",
+            "settings": {
+              "collection": "suits-tuxedos"
+            }
+          },
+          "1502429554270": {
+            "type": "collection",
+            "settings": {
+              "collection": "shirts"
+            }
+          },
+          "1502429543683": {
+            "type": "collection",
+            "settings": {
+              "collection": "blazers-vests"
+            }
+          },
+          "1502429549782": {
+            "type": "collection",
+            "settings": {
+              "collection": "pants-jeans"
+            }
+          },
+          "1502429561728": {
+            "type": "collection",
+            "settings": {
+              "collection": "jackets-sweaters"
+            }
+          },
+          "1502429555836": {
+            "type": "collection",
+            "settings": {
+              "collection": "t-shirts-hoodies"
+            }
+          },
+          "1501904439560": {
+            "type": "collection",
+            "settings": {
+              "collection": "bowties"
+            }
+          },
+          "1501904557833": {
+            "type": "collection",
+            "settings": {
+              "collection": "neckties"
+            }
+          },
+          "1501904617490": {
+            "type": "collection",
+            "settings": {
+              "collection": "skinny-ties"
+            }
+          },
+          "1501904410715": {
+            "type": "collection",
+            "settings": {
+              "collection": "ascot-ties"
+            }
+          },
+          "1501904591429": {
+            "type": "collection",
+            "settings": {
+              "collection": "pocket-squares"
+            }
+          },
+          "1501904433568": {
+            "type": "collection",
+            "settings": {
+              "collection": "boutonnieres-brooches-lapel-pins"
+            }
+          },
+          "1501904506890": {
+            "type": "collection",
+            "settings": {
+              "collection": "cufflinks"
+            }
+          },
+          "1501904649020": {
+            "type": "collection",
+            "settings": {
+              "collection": "tie-clips"
+            }
+          },
+          "1501904535165": {
+            "type": "collection",
+            "settings": {
+              "collection": "hats"
+            }
+          },
+          "1501904612138": {
+            "type": "collection",
+            "settings": {
+              "collection": "scarves"
+            }
+          },
+          "1501904523662": {
+            "type": "collection",
+            "settings": {
+              "collection": "glasses"
+            }
+          },
+          "1501904667758": {
+            "type": "collection",
+            "settings": {
+              "collection": "watches"
+            }
+          },
+          "1501904596831": {
+            "type": "collection",
+            "settings": {
+              "collection": "rings"
+            }
+          },
+          "1501904548504": {
+            "type": "collection",
+            "settings": {
+              "collection": "necklaces"
+            }
+          },
+          "1501904485206": {
+            "type": "collection",
+            "settings": {
+              "collection": "bracelets"
+            }
+          },
+          "1501904663829": {
+            "type": "collection",
+            "settings": {
+              "collection": "wallets"
+            }
+          },
+          "1501904417280": {
+            "type": "collection",
+            "settings": {
+              "collection": "belts"
+            }
+          },
+          "1501904637053": {
+            "type": "collection",
+            "settings": {
+              "collection": "belts-straps-suspenders"
+            }
+          },
+          "1501904603747": {
+            "type": "collection",
+            "settings": {
+              "collection": "sleepwear-robes"
+            }
+          },
+          "1502429557178": {
+            "type": "collection",
+            "settings": {
+              "collection": "underwear"
+            }
+          },
+          "1501904629728": {
+            "type": "collection",
+            "settings": {
+              "collection": "socks"
+            }
+          },
+          "1501904622919": {
+            "type": "collection",
+            "settings": {
+              "collection": "shoes-slippers"
+            }
+          },
+          "1501904583804": {
+            "type": "collection",
+            "settings": {
+              "collection": "pens"
+            }
+          },
+          "1501904513289": {
+            "type": "collection",
+            "settings": {
+              "collection": "gadgets"
+            }
+          },
+          "1501904542571": {
+            "type": "collection",
+            "settings": {
+              "collection": "key-chains"
+            }
+          },
+          "1501907858032": {
+            "type": "collection",
+            "settings": {
+              "collection": "pipes"
+            }
+          },
+          "1501904658338": {
+            "type": "collection",
+            "settings": {
+              "collection": "umbrellas"
+            }
+          },
+          "1501904401060": {
+            "type": "collection",
+            "settings": {
+              "collection": "gentleman-sets"
+            }
+          },
+          "1501904496185": {
+            "type": "collection",
+            "settings": {
+              "collection": "misc-accessories"
+            }
+          },
+          "1501904578431": {
+            "type": "collection",
+            "settings": {
+              "collection": "patriotic-collection"
+            }
+          }
+        },
+        "block_order": [
+          "1501904572294",
+          "1501904560249",
+          "1532251292376",
+          "1501904517275",
+          "1502429558634",
+          "1502429554270",
+          "1502429543683",
+          "1502429549782",
+          "1502429561728",
+          "1502429555836",
+          "1501904439560",
+          "1501904557833",
+          "1501904617490",
+          "1501904410715",
+          "1501904591429",
+          "1501904433568",
+          "1501904506890",
+          "1501904649020",
+          "1501904535165",
+          "1501904612138",
+          "1501904523662",
+          "1501904667758",
+          "1501904596831",
+          "1501904548504",
+          "1501904485206",
+          "1501904663829",
+          "1501904417280",
+          "1501904637053",
+          "1501904603747",
+          "1502429557178",
+          "1501904629728",
+          "1501904622919",
+          "1501904583804",
+          "1501904513289",
+          "1501904542571",
+          "1501907858032",
+          "1501904658338",
+          "1501904401060",
+          "1501904496185",
+          "1501904578431"
+        ],
+        "settings": {
+          "display_type": "selected",
+          "layout": "grid",
+          "sort": "products_high",
+          "grid": "5"
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "grid": "3",
+          "rows": "4",
+          "collection_sidebar_filters": "tags",
+          "product_show_compare_at_price": false,
+          "product_show_saved_amount": false,
+          "product_reviews_enable": false
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "product_image_zoom_enable": false,
+          "product_quantity_enable": true,
+          "product_quantity_message": true,
+          "product_incoming_message": false,
+          "product_vendor_enable": false,
+          "product_show_saved_amount": false,
+          "product_show_compare_at_price": false,
+          "related_products_enable": true,
+          "social_sharing_products": true,
+          "product_reviews_enable": false
+        }
+      },
+      "1502424637916": {
+        "type": "collection-list",
+        "blocks": {
+          "1502426732689": {
+            "type": "collection",
+            "settings": {
+              "collection": "glasses"
+            }
+          },
+          "1502426303052": {
+            "type": "collection",
+            "settings": {
+              "collection": "cufflinks"
+            }
+          },
+          "1502426307262": {
+            "type": "collection",
+            "settings": {
+              "collection": "tie-clips"
+            }
+          },
+          "1502426606106": {
+            "type": "collection",
+            "settings": {
+              "collection": "boutonnieres-brooches-lapel-pins"
+            }
+          },
+          "1502426227450": {
+            "type": "collection",
+            "settings": {
+              "collection": "pocket-squares"
+            }
+          },
+          "1502424637916-0": {
+            "type": "collection",
+            "settings": {
+              "collection": "gentleman-sets"
+            }
+          }
+        },
+        "block_order": [
+          "1502426732689",
+          "1502426303052",
+          "1502426307262",
+          "1502426606106",
+          "1502426227450",
+          "1502424637916-0"
+        ],
+        "settings": {
+        }
+      },
+      "1502424649574": {
+        "type": "collection-list",
+        "blocks": {
+          "1502425947827": {
+            "type": "collection",
+            "settings": {
+              "collection": "hats"
+            }
+          },
+          "1502425952545": {
+            "type": "collection",
+            "settings": {
+              "collection": "scarves"
+            }
+          },
+          "1502426965601": {
+            "type": "collection",
+            "settings": {
+              "collection": "socks"
+            }
+          },
+          "1502424649574-0": {
+            "type": "collection",
+            "settings": {
+              "collection": "shoes-slippers"
+            }
+          },
+          "1502424653879": {
+            "type": "collection",
+            "settings": {
+              "collection": "sleepwear-robes"
+            }
+          },
+          "1502426973729": {
+            "type": "collection",
+            "settings": {
+              "collection": "underwear"
+            }
+          }
+        },
+        "block_order": [
+          "1502425947827",
+          "1502425952545",
+          "1502426965601",
+          "1502424649574-0",
+          "1502424653879",
+          "1502426973729"
+        ],
+        "settings": {
+        }
+      },
+      "1502424990450": {
+        "type": "collection-list",
+        "blocks": {
+          "1502426709671": {
+            "type": "collection",
+            "settings": {
+              "collection": "wallets"
+            }
+          },
+          "1502426578966": {
+            "type": "collection",
+            "settings": {
+              "collection": "bracelets"
+            }
+          },
+          "1502426110991": {
+            "type": "collection",
+            "settings": {
+              "collection": "pens"
+            }
+          },
+          "1502426145888": {
+            "type": "collection",
+            "settings": {
+              "collection": "key-chains"
+            }
+          },
+          "1502426116445": {
+            "type": "collection",
+            "settings": {
+              "collection": "gadgets"
+            }
+          },
+          "1502426402547": {
+            "type": "collection",
+            "settings": {
+              "collection": "umbrellas"
+            }
+          }
+        },
+        "block_order": [
+          "1502426709671",
+          "1502426578966",
+          "1502426110991",
+          "1502426145888",
+          "1502426116445",
+          "1502426402547"
+        ],
+        "settings": {
+        }
+      },
+      "1502425167997": {
+        "type": "collection-list",
+        "blocks": {
+          "1502425167997-0": {
+            "type": "collection",
+            "settings": {
+              "collection": "suits-tuxedos"
+            }
+          },
+          "1502427008253": {
+            "type": "collection",
+            "settings": {
+              "collection": "shirts"
+            }
+          },
+          "1502425218244": {
+            "type": "collection",
+            "settings": {
+              "collection": "blazers-vests"
+            }
+          },
+          "1502427013319": {
+            "type": "collection",
+            "settings": {
+              "collection": "pants-jeans"
+            }
+          },
+          "1502425271008": {
+            "type": "collection",
+            "settings": {
+              "collection": "jackets-sweaters"
+            }
+          },
+          "1502427014615": {
+            "type": "collection",
+            "settings": {
+              "collection": "t-shirts-hoodies"
+            }
+          }
+        },
+        "block_order": [
+          "1502425167997-0",
+          "1502427008253",
+          "1502425218244",
+          "1502427013319",
+          "1502425271008",
+          "1502427014615"
+        ],
+        "settings": {
+        }
+      },
+      "1508982231033": {
+        "type": "featured-blog",
+        "settings": {
+          "title": "Blogs",
+          "blog": "gentlemen-blogs",
+          "post_limit": 3,
+          "blog_show_date": true,
+          "blog_show_author": false,
+          "blog_show_image": false,
+          "blog_show_excerpt": true,
+          "show_view_all": true
+        }
+      },
+      "1512190344405": {
+        "type": "collection-rows",
+        "disabled": true,
+        "settings": {
+          "home_featured_row": "maceoo-shirts",
+          "grid": "2",
+          "product_show_saved_amount": false,
+          "product_show_compare_at_price": false
+        }
+      },
+      "1514882729625": {
+        "type": "collection-rows",
+        "disabled": true,
+        "settings": {
+          "home_featured_row": "",
+          "grid": "2",
+          "product_show_saved_amount": false,
+          "product_show_compare_at_price": false
+        }
+      },
+      "1517803883350": {
+        "type": "collection-rows",
+        "disabled": true,
+        "settings": {
+          "home_featured_row": "maceoo-polos",
+          "grid": "2",
+          "product_show_saved_amount": true,
+          "product_show_compare_at_price": false
+        }
+      },
+      "1517803903546": {
+        "type": "collection-rows",
+        "disabled": true,
+        "settings": {
+          "home_featured_row": "maceoo-blazers",
+          "grid": "2",
+          "product_show_saved_amount": true,
+          "product_show_compare_at_price": false
+        }
+      },
+      "1537683709843": {
+        "type": "slideshow",
+        "disabled": true,
+        "blocks": {
+          "1537683733877": {
+            "type": "image",
+            "settings": {
+              "slide": "shopify:\/\/shop_images\/inziO1537685052.jpg",
+              "link": "shopify:\/\/collections\/glasses"
+            }
+          },
+          "1537684926895": {
+            "type": "image",
+            "settings": {
+              "slide": "shopify:\/\/shop_images\/GP2HF1537685477.jpg",
+              "link": "shopify:\/\/collections\/blazers-vests"
+            }
+          },
+          "1537683709843-0": {
+            "type": "image",
+            "settings": {
+              "slide": "shopify:\/\/shop_images\/iWKRS1537685224.jpg",
+              "link": "shopify:\/\/collections\/shoes-slippers"
+            }
+          },
+          "1537684954755": {
+            "type": "image",
+            "settings": {
+              "slide": "shopify:\/\/shop_images\/4jamK1537685594.jpg",
+              "link": "shopify:\/\/collections\/socks"
+            }
+          }
+        },
+        "block_order": [
+          "1537683733877",
+          "1537684926895",
+          "1537683709843-0",
+          "1537684954755"
+        ],
+        "settings": {
+          "slider_home_auto": true,
+          "slider_home_rate": "5000"
         }
       }
     },
     "content_for_index": [
-      "hero",
-      "featured-collections",
-      "feature-row",
-      "slideshow",
-      "1531487303559"
+      "1537683709843",
+      "collection-list",
+      "1502424637916",
+      "1502425167997",
+      "1502424649574",
+      "1502424990450",
+      "1517803903546",
+      "1512190344405",
+      "1517803883350",
+      "1514882729625",
+      "1508982231033"
     ]
   },
   "presets": {
-    "Default": {
-      "color_text": "#3d4246",
-      "color_body_text": "#69727b",
-      "color_sale_text": "#557B97",
-      "color_borders": "#e8e9eb",
-      "color_button": "#557B97",
-      "color_button_text": "#fff",
-      "color_small_button": "#fff",
-      "color_small_button_text": "#3d4246",
-      "color_text_field": "#fff",
-      "color_text_field_text": "#000",
-      "color_image_overlay_text": "#fff",
-      "color_image_overlay": "#3d4246",
-      "image_overlay_opacity": 40,
+    "Blue": {
+      "ajax_cart_method": "modal",
+      "cart_notes_enable": false,
+      "collection_sidebar_filters": "tags",
+      "color_accent": "#dd2525",
       "color_body_bg": "#fff",
-      "type_header_font": "work_sans_n6",
-      "type_header_base_size": 26,
-      "type_base_font": "work_sans_n4",
-      "type_base_size": 16,
-      "type_bold_product_titles": false,
+      "color_body_text": "#585858",
+      "color_borders": "#ececec",
+      "color_footer_bg": "#f2f2f2",
+      "color_footer_social_link": "#bbbbbb",
+      "color_footer_text": "#636363",
+      "color_header_background": "#182e49",
+      "color_header_cart_search": "#0f243d",
+      "color_header_text": "#fff",
+      "color_heading_text": "#000",
+      "color_nav_bg": "#182e49",
+      "color_nav_text": "#fff",
+      "color_primary": "#528ec1",
+      "color_secondary": "#dcdcdc",
       "share_facebook": true,
-      "share_twitter": true,
       "share_pinterest": true,
+      "share_twitter": true,
+      "social_facebook_link": "",
+      "social_fancy_link": "",
+      "social_google_plus_link": "",
+      "social_instagram_link": "",
+      "social_pinterest_link": "",
+      "social_sharing_style": "is-normal",
+      "social_snapchat_link": "",
+      "social_tumblr_link": "",
+      "social_twitter_link": "",
+      "social_vimeo_link": "",
+      "social_youtube_link": "",
+      "type_accent_family": "Google_Montserrat_400_sans",
+      "type_base_family": "Google_Montserrat_400,700_sans",
+      "type_base_size": "13px",
+      "type_button_size": "14px",
+      "type_button_transform": true,
+      "type_header_family": "Google_Montserrat_700_sans",
+      "type_header_transform": true,
+      "type_navigation_size": "14px",
+      "type_navigation_transform": true,
+      "superscript_decimals": true,
       "sections": {
         "header": {
           "type": "header",
           "settings": {
+            "logo": "",
+            "logo_max_width": "305"
           }
         },
-        "hero": {
-          "type": "hero",
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "menu": {
+              "type": "menu",
+              "settings": {
+                "title": "Quick links",
+                "menu": "",
+                "width": "16%"
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+                "title": "Get in touch",
+                "richtext": "<p>Use this text to share information about your brand with your customers.<\/p>",
+                "width": "50%"
+              }
+            },
+            "newsletter": {
+              "type": "newsletter",
+              "settings": {
+                "title": "Newsletter",
+                "width": "33%"
+              }
+            }
+          },
+          "block_order": [
+            "menu",
+            "text",
+            "newsletter"
+          ],
           "settings": {
-            "text_size": "large"
+            "social_enabled": false,
+            "legal_menu": ""
           }
         },
         "slideshow": {
           "type": "slideshow",
           "blocks": {
-            "slideshow-0": {
+            "slide-0": {
               "type": "image",
               "settings": {
+                "slide": "",
+                "link": ""
               }
             },
-            "slideshow-1": {
+            "slide-1": {
               "type": "image",
               "settings": {
+                "slide": "",
+                "link": ""
+              }
+            },
+            "slide-2": {
+              "type": "image",
+              "settings": {
+                "slide": "",
+                "link": ""
               }
             }
           },
           "block_order": [
-            "slideshow-0",
-            "slideshow-1"
+            "slide-0",
+            "slide-1",
+            "slide-2"
+          ],
+          "settings": {
+            "slider_home_auto": false,
+            "slider_home_rate": "5000"
+          }
+        },
+        "collection-list": {
+          "type": "collection-list",
+          "blocks": {
+            "collection-list-0": {
+              "type": "collection",
+              "settings": {
+                "collection": ""
+              }
+            },
+            "collection-list-1": {
+              "type": "collection",
+              "settings": {
+                "collection": ""
+              }
+            }
+          },
+          "block_order": [
+            "collection-list-0",
+            "collection-list-1"
           ],
           "settings": {
           }
         },
-        "featured-collections": {
-          "type": "collection",
+        "collection-row-1": {
+          "type": "collection-rows",
           "settings": {
-            "collection": "frontpage"
+            "home_featured_row": "",
+            "grid": "4"
           }
         },
-        "feature-row": {
-          "type": "feature-row",
+        "collection-row-2": {
+          "type": "collection-rows",
           "settings": {
+            "home_featured_row": "",
+            "grid": "4"
           }
         },
-        "footer": {
-          "type": "footer",
+        "collection-row-3": {
+          "type": "collection-rows",
           "settings": {
-            "footer_linklist_two": ""
+            "home_featured_row": "",
+            "grid": "4"
           }
         }
       },
       "content_for_index": [
-        "hero",
-        "featured-collections",
-        "feature-row",
-        "slideshow"
+        "slideshow",
+        "collection-list",
+        "collection-row-1",
+        "collection-row-2",
+        "collection-row-3"
       ]
     },
     "Light": {
-      "color_text": "#162950",
-      "color_body_text": "#6d6d6d",
-      "color_sale_text": "#DA2F0C",
-      "color_borders": "#e4e4e4",
-      "color_button": "#DA2F0C",
-      "color_button_text": "#ffffff",
-      "color_small_button": "#eaeaea",
-      "color_small_button_text": "#162950",
-      "color_text_field": "#ffffff",
-      "color_text_field_text": "#162950",
-      "color_image_overlay_text": "#ffffff",
-      "color_image_overlay": "#3d3d3d",
-      "image_overlay_opacity": 40,
-      "color_body_bg": "#f8f8f8",
-      "type_header_font": "muli_n6",
-      "type_header_base_size": 26,
-      "type_base_font": "muli_n4",
-      "type_base_size": 18,
-      "type_bold_product_titles": true,
+      "ajax_cart_method": "modal",
+      "cart_notes_enable": false,
+      "collection_sidebar_filters": "tags",
+      "color_accent": "#545454",
+      "color_body_bg": "#f3f3f3",
+      "color_body_text": "#858585",
+      "color_borders": "#dedede",
+      "color_footer_bg": "#ffffff",
+      "color_footer_social_link": "#545454",
+      "color_footer_text": "#545454",
+      "color_header_background": "#ffffff",
+      "color_header_cart_search": "#f3f3f3",
+      "color_header_text": "#545454",
+      "color_heading_text": "#2f2f2f",
+      "color_nav_bg": "#9c756f",
+      "color_nav_text": "#ffffff",
+      "color_primary": "#9c756f",
+      "color_secondary": "#f3f3f3",
       "share_facebook": true,
-      "share_twitter": true,
       "share_pinterest": true,
-      "social_twitter_link": "",
+      "share_twitter": true,
       "social_facebook_link": "",
-      "social_pinterest_link": "",
+      "social_google_plus_link": "",
       "social_instagram_link": "",
-      "social_tumblr_link": "",
-      "social_snapchat_link": "",
-      "social_youtube_link": "",
-      "social_vimeo_link": "",
-      "favicon": "",
-      "checkout_header_image": "",
-      "checkout_logo_image": "",
-      "checkout_logo_position": "left",
-      "checkout_logo_size": "small",
-      "checkout_body_background_image": "",
-      "checkout_body_background_color": "#ffffff",
-      "checkout_input_background_color_mode": "white",
-      "checkout_sidebar_background_image": "",
-      "checkout_sidebar_background_color": "#e8f3f6",
-      "checkout_heading_font": "Roboto",
-      "checkout_body_font": "Source Sans Pro",
-      "checkout_accent_color": "#1990c6",
-      "checkout_button_color": "#23314e",
-      "checkout_error_color": "#ff6d6d",
+      "social_sharing_style": "is-normal",
+      "social_twitter_link": "",
+      "type_accent_family": "Google_Lato_700_sans",
+      "type_base_family": "Google_Roboto_400,700_sans",
+      "type_base_size": "14px",
+      "type_button_size": "14px",
+      "type_button_transform": true,
+      "type_header_family": "TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif",
+      "type_header_transform": false,
+      "type_navigation_size": "14px",
+      "type_navigation_transform": true,
+      "superscript_decimals": true,
       "sections": {
         "header": {
           "type": "header",
           "settings": {
-            "align_logo": "left",
             "logo": "",
-            "logo_max_width": 135,
-            "main_linklist": "main-menu",
-            "message": true,
-            "color_bg": "#162950",
-            "color_text": "#ffffff"
+            "logo_max_width": "305"
           }
         },
-        "hero": {
-          "type": "hero",
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "menu": {
+              "type": "menu",
+              "settings": {
+                "title": "Quick links",
+                "menu": "",
+                "width": "16%"
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+                "title": "Get in touch",
+                "richtext": "<p>Use this text to share information about your brand with your customers.<\/p>",
+                "width": "50%"
+              }
+            },
+            "newsletter": {
+              "type": "newsletter",
+              "settings": {
+                "title": "Newsletter",
+                "width": "33%"
+              }
+            }
+          },
+          "block_order": [
+            "menu",
+            "text",
+            "newsletter"
+          ],
           "settings": {
-            "alignment": "center",
-            "hero_size": "x-large",
-            "text_size": "large"
+            "social_enabled": false,
+            "legal_menu": ""
           }
         },
         "slideshow": {
           "type": "slideshow",
           "blocks": {
-            "slideshow-0": {
+            "slide-0": {
               "type": "image",
               "settings": {
-                "image": "",
-                "alignment": "center"
-              }
-            },
-            "1492095993817": {
-              "type": "image",
-              "settings": {
-                "image": "",
-                "alignment": "center"
+                "slide": "",
+                "link": ""
               }
             }
           },
           "block_order": [
-            "slideshow-0",
-            "1492095993817"
+            "slide-0"
           ],
           "settings": {
-            "autoplay": true,
-            "autoplay_speed": 6,
-            "slideshow_height": "medium",
-            "text_size": "medium"
+            "slider_home_auto": false,
+            "slider_home_rate": "5000"
           }
         },
-        "featured-collections": {
-          "type": "collection",
-          "settings": {
-            "grid": 3,
-            "rows": 1,
-            "show_vendor": true,
-            "show_view_all": true
-          }
-        },
-        "footer": {
-          "type": "footer",
-          "settings": {
-            "footer_linklist": "main-menu",
-            "footer_linklist_two": "footer",
-            "footer_newsletter_enable": true,
-            "show_payment_icons": true
-          }
-        },
-        "product-template": {
-          "type": "product-template",
-          "settings": {
-            "image_size": "medium",
-            "show_quantity_selector": false,
-            "show_variant_labels": true,
-            "show_vendor": false,
-            "enable_zoom": true,
-            "show_share_buttons": true
-          }
-        },
-        "collection-template": {
-          "type": "collection-template",
-          "settings": {
-            "layout": "grid",
-            "grid": 2,
-            "rows": 2,
-            "show_collection_image": true,
-            "show_vendor": false,
-            "sort_enable": true,
-            "tags_enable": true
-          }
-        },
-        "1492033809691": {
-          "type": "map",
-          "settings": {
-          }
-        },
-        "1492033877875": {
-          "type": "quotes",
-          "blocks": {
-            "1492033877875-0": {
-              "type": "quote",
-              "settings": {
-              }
-            }
-          },
-          "block_order": [
-            "1492033877875-0"
-          ],
-          "settings": {
-          }
-        },
-        "1492033924902": {
-          "type": "custom-content",
-          "blocks": {
-            "1492033924902-0": {
-              "type": "text",
-              "settings": {
-                "width": "100%",
-                "alignment": "center",
-                "align_text": "center"
-              }
-            }
-          },
-          "block_order": [
-            "1492033924902-0"
-          ],
-          "settings": {
-            "title": ""
-          }
-        },
-        "1492096252560": {
+        "collection-list": {
           "type": "collection-list",
           "blocks": {
-            "1492096252560-0": {
-              "type": "featured_collection",
+            "collection-list-0": {
+              "type": "collection",
               "settings": {
+                "collection": ""
               }
             },
-            "1492096252560-1": {
-              "type": "featured_collection",
+            "collection-list-1": {
+              "type": "collection",
               "settings": {
-              }
-            },
-            "1492096252560-2": {
-              "type": "featured_collection",
-              "settings": {
+                "collection": ""
               }
             }
           },
           "block_order": [
-            "1492096252560-0",
-            "1492096252560-1",
-            "1492096252560-2"
+            "collection-list-0",
+            "collection-list-1"
           ],
           "settings": {
-            "grid": 3
           }
         },
-        "blog-template": {
-          "type": "blog-template",
+        "collection-row-1": {
+          "type": "collection-rows",
           "settings": {
-            "layout": "grid",
-            "blog_show_author": true,
-            "blog_show_date": false
+            "home_featured_row": "",
+            "grid": "4"
           }
         },
-        "article-template": {
-          "type": "article-template",
+        "collection-row-2": {
+          "type": "collection-rows",
           "settings": {
-            "blog_show_author": true,
-            "blog_show_date": true,
-            "show_share_buttons": true
+            "home_featured_row": "",
+            "grid": "4"
           }
         },
-        "cart-template": {
-          "type": "cart-template",
+        "collection-row-3": {
+          "type": "collection-rows",
           "settings": {
-            "cart_notes_enable": false
+            "home_featured_row": "",
+            "grid": "4"
+          }
+        },
+        "featured-content": {
+          "type": "featured-content",
+          "blocks": {
+            "featured-content-0": {
+              "type": "text",
+              "settings": {
+                "title": "Talk about your brand",
+                "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+              }
+            }
+          },
+          "block_order": [
+            "featured-content-0"
+          ],
+          "settings": {
+          }
+        },
+        "slideshow-2": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-2-0": {
+              "type": "image",
+              "settings": {
+                "slide": "",
+                "link": ""
+              }
+            }
+          },
+          "block_order": [
+            "slideshow-2-0"
+          ],
+          "settings": {
+            "slider_home_auto": false,
+            "slider_home_rate": "5000"
           }
         }
       },
       "content_for_index": [
-        "hero",
-        "featured-collections",
         "slideshow",
-        "1492033924902",
-        "1492096252560",
-        "1492033877875",
-        "1492033809691"
+        "collection-list",
+        "collection-row-1",
+        "collection-row-2",
+        "collection-row-3",
+        "slideshow-2",
+        "featured-content"
       ]
     }
   }

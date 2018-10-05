@@ -9,5 +9,5 @@
 {% endcomment %}
 
 {% if invalidateMinifiedAssetCache == true %}
-  <script async src="https://api-stage.pluginspeed.com/users/{{ licensedTo }}/minified-asset-cache/invalidate?p={{ request.path | url_param_escape }}"></script>
+  <script async src="https://api.pluginspeed.com/users/{{ licensedTo }}/minified-asset-cache/invalidate?p={{ request.path | url_param_escape }}"></script>
 {% endif %}

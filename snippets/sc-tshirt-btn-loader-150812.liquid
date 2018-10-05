@@ -1,0 +1,7 @@
+{% comment %} Added by SolverCircle for Tailor Shirt App {% endcomment %}
+
+{% if shop.metafields.ScTailorShirt.tshirt_is_store_enabled and product.metafields.ScTailorShirt.tshirt_is_enabled and shop.metafields.ScTailorShirt.tshirt_make_shirt_btn %}
+	<div id="dv-tailor-shirt" style="display:none;" data-url="{{ product.variants.first.id }}" ></div>
+	<script type="text/javascript" src="/apps/tailor-shop-shirt/scripts/ts_shirt.js"></script>
+	<div id="sc-tshirt-app-info-150812" data-tshirt-make-shirt-btn="{{ shop.metafields.ScTailorShirt.tshirt_make_shirt_btn }}" ></div>
+{% endif %}

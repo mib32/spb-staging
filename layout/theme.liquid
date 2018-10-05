@@ -6,130 +6,195 @@
 {%- endcomment -%}
 {%- capture non_minified_html -%}
 <!doctype html>
-<!--[if IE 9]> <html class="ie9 no-js" lang="{{ shop.locale }}"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{ shop.locale }}"> <!--<![endif]-->
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-touch no-js"> <!--<![endif]-->
 <head>
+{% comment pluginspeed replaced-js DON'T CHANGE %}{{ 'collectionpageswatch.js' | asset_url | script_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'collectionpageswatch.js', tag: 'script', liquid_tag: true -%}
+  {% include 'shop-sheriff-amp' %}
+  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+  
+  
+  <!-- Basic page needs ================================================== -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="{{ settings.color_button }}">
-  <link rel="canonical" href="{{ canonical_url }}">
 
-  {%- if settings.favicon != blank -%}
-    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
-  {%- endif -%}
-kakira12
-  {%- capture seo_title -%}
-    {{ page_title }}
-    {%- if current_tags -%}
-      {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
-    {%- endif -%}
-    {%- if current_page != 1 -%}
-      &ndash; {{ 'general.meta.page' | t: page: current_page }}
-    {%- endif -%}
-    {%- assign escaped_page_title = page_title | escape -%}
-    {%- unless escaped_page_title contains shop.name -%}
-      &ndash; {{ shop.name }}
-    {%- endunless -%}
-  {%- endcapture -%}
-  <title>{{ seo_title | strip }}</title>
+  {% if settings.favicon %}
+  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
+  {% endif %}
 
-  {%- if page_description -%}
-    <meta name="description" content="{{ page_description | escape }}">
-  {%- endif -%}
+  <!-- Title and description ================================================== -->
+  {% include 'SEOManager' %}
 
+  <!-- Product meta ================================================== -->
   {% include 'social-meta-tags' %}
-  asds
-  asd
-  {% include 'homepage-instagram' %}
 
+  <!-- Helpers ================================================== -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- CSS ================================================== -->
   {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'theme.scss.css' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'theme.scss.css', tag: 'stylesheet', liquid_tag: true -%}
+  {% include 'google-fonts' %}
 
-  <script>
-    var theme = {
-      strings: {
-        addToCart: {{ 'products.product.add_to_cart' | t | json }},
-        soldOut: {{ 'products.product.sold_out' | t | json }},
-        unavailable: {{ 'products.product.unavailable' | t | json }},
-        regularPrice: {{ 'products.product.regular_price' | t | json }},
-        sale: {{ 'products.product.on_sale' | t | json }},
-        showMore: {{ 'general.filters.show_more' | t | json }},
-        showLess: {{ 'general.filters.show_less' | t | json }},
-        addressError: {{ 'sections.map.address_error' | t | json }},
-        addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
-        addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
-        authError: {{ 'sections.map.auth_error_html' | t | json }},
-        newWindow: {{ 'general.accessibility.link_messages.new_window' | t | json }},
-        external: {{ 'general.accessibility.link_messages.external' | t | json }},
-        newWindowExternal: {{ 'general.accessibility.link_messages.new_window_and_external' | t | json }}
-      },
-      moneyFormat: {{ shop.money_format | json }}
-    }
-
-    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-  </script>
-
-  <!--[if (lte IE 9) ]>{% comment pluginspeed replaced-js DON'T CHANGE %}{{ 'match-media.min.js' | asset_url | script_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'match-media.min.js', tag: 'script', liquid_tag: true -%}<![endif]-->
-
-  {%- if template.directory == 'customers' -%}
-    <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script><!--<![endif]-->
-    <!--[if lte IE 9]><script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script><![endif]-->
-  {%- endif -%}
-
-  {% include 'test' %}
-
-  {{ content_for_header }}
-  {%- include 'pluginspeed' -%}
-  abcd
-  {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'abc.scss' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'abc.scss', tag: 'stylesheet', liquid_tag: true -%}
-  {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'abc.scss.liquid' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'abc.scss.liquid', tag: 'stylesheet', liquid_tag: true -%}
-  {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'abc.css' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'abc.css', tag: 'stylesheet', liquid_tag: true -%}
-  {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'abc.css.liquid' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'abc.css.liquid', tag: 'stylesheet', liquid_tag: true -%}
-  {% comment pluginspeed replaced-js DON'T CHANGE %}{{ 'abc.js' | asset_url | script_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'abc.js', tag: 'script', liquid_tag: true -%}
-  {% comment pluginspeed replaced-js DON'T CHANGE %}{{ 'abc.js.liquid' | asset_url | script_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'abc.js.liquid', tag: 'script', liquid_tag: true -%}
-  {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'abc.css' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'abc.css', tag: 'stylesheet', liquid_tag: true -%}
+  <!-- Header hook for plugins ================================================== -->
   
-  defer:
-  {% include 'defer-script' with 'abc.js' %}
-  </head>
+  {% include 'buddha-megamenu-before' %}
+  {% include 'buddha-megamenu' %}
+  {{ content_for_header }}
 
-<body class="template-{{ template | split: '.' | first }}">
+  {% include 'oldIE-js' %}
 
-  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  {% comment %}
+    If you store has customers disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template.directory == 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
 
-  <div id="SearchDrawer" class="search-bar drawer drawer--top" role="dialog" aria-modal="true" aria-label="{{ 'general.search.placeholder' | t }}">
-    <div class="search-bar__table">
-      <div class="search-bar__table-cell search-bar__form-wrapper">
-        <form class="search search-bar__form" action="/search" method="get" role="search">
-          <input class="search__input search-bar__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
-          <button class="search-bar__submit search__submit btn--link" type="submit">
-            {% include 'icon-search' %}
-            <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
-          </button>
-        </form>
-      </div>
-      <div class="search-bar__table-cell text-right">
-        <button type="button" class="btn--link search-bar__close js-drawer-close">
-          {% include 'icon-close' %}
-          <span class="icon__fallback-text">{{ 'general.search.close' | t }}</span>
-        </button>
-      </div>
-    </div>
-  </div>
+  {% comment pluginspeed replaced-inliner DON'T CHANGE %}{{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}{% endcomment %}{% include 'pluginspeed-inlined-jquery.min.js' %}
+  
+  <!--[if (gt IE 9)|!(IE)]><!-->{% comment pluginspeed replaced-js DON'T CHANGE %}<script src="{{ 'lazysizes.min.js' | asset_url }}" async="async"></script>{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'lazysizes.min.js', tag: 'script' -%} <script src="{%- include 'pluginspeed-asset-url', asset: 'lazysizes.min.js' -%}" async="async"></script><!--<![endif]-->
+  <!--[if lte IE 9]>{% comment pluginspeed replaced-js DON'T CHANGE %}<script src="{{ 'lazysizes.min.js' | asset_url }}"></script>{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'lazysizes.min.js', tag: 'script' -%} <script src="{%- include 'pluginspeed-asset-url', asset: 'lazysizes.min.js' -%}"></script><![endif]-->
+
+  <!--[if (gt IE 9)|!(IE)]><!-->{% comment pluginspeed replaced-js DON'T CHANGE %}<script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'vendor.js', tag: 'script' -%} <script src="{%- include 'pluginspeed-asset-url', asset: 'vendor.js' -%}" defer="defer"></script><!--<![endif]-->
+  <!--[if lte IE 9]>{% comment pluginspeed replaced-js DON'T CHANGE %}<script src="{{ 'vendor.js' | asset_url }}"></script>{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'vendor.js', tag: 'script' -%} <script src="{%- include 'pluginspeed-asset-url', asset: 'vendor.js' -%}"></script><![endif]-->
+
+  <!--[if (gt IE 9)|!(IE)]><!-->{% comment pluginspeed replaced-js DON'T CHANGE %}<script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'theme.js', tag: 'script' -%} <script src="{%- include 'pluginspeed-asset-url', asset: 'theme.js' -%}" defer="defer"></script><!--<![endif]-->
+  <!--[if lte IE 9]>{% comment pluginspeed replaced-js DON'T CHANGE %}<script src="{{ 'theme.js' | asset_url }}"></script>{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'theme.js', tag: 'script' -%} <script src="{%- include 'pluginspeed-asset-url', asset: 'theme.js' -%}"></script><![endif]-->
+
+
+
+<script type="text/javascript">var ryviu_user_settings = {{shop.metafields.ryviu.user_settings}};</script>
+   
+    <script src="https://econdom.credibly.io/shopify/head-script.js?shop=gentlemen-clothing.myshopify.com"></script>
+
+   {% include 'disable-right-click' %}
+{% comment %} Disable Shopify Best-Sellers  {% endcomment %} <style>option[value=best-selling]{display: none;}</style><script>if(document.location.href.indexOf("sort_by=best-selling") > -1) {document.location.href = "/collections/all";}</script>
+      {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'paymentfont.scss.css' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'paymentfont.scss.css', tag: 'stylesheet', liquid_tag: true -%}
+    
+
+
+  {% include 'shogun-head' %}
+
+
+
+
+
+</head>
+ 
+
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+  {% include 'buddha-megamenu-wireframe' %}
 
   {% section 'header' %}
 
-  <div class="page-container" id="PageContainer">
+  <main class="wrapper main-content" role="main">
 
-    <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
-      {{ content_for_layout }}
-    </main>
+    {{ content_for_layout }}
 
-    {% section 'footer' %}
+  </main>
 
-  </div>
+  {% section 'footer' %}
+
+  <script>
+
+  var moneyFormat = '{{ shop.money_format }}';
+  var theme = {
+    strings:{
+      product:{
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        will_be_in_stock_after:{{ 'products.product.will_be_in_stock_after' | t: date: '[date]' | json }},
+        only_left:{{ 'products.product.only_left' | t: count: '1' | json }}
+      },
+      navigation:{
+        more_link: {{ 'layout.navigation.more' | t | json }}
+      }
+    }
+  }
+  </script>
+
+{% if settings.ajax_cart_method != 'page' %}
+
+  {% include 'ajax-cart-template' %}
+
+{% endif %}
+
+
+  
+  
+  <script>
+    function sca_get_ryviu_star($, product, settings){
+      $(".ryviu-review-start-container").html("");
+      var handle = product.handle;
+      $.ajax({
+        type: 'get',
+        url: '/products/' + handle,
+        success: function(result){
+          var intermediate = $('<div/>').html(result);
+          
+          var html = $('.ryviu-widget', intermediate);
+          $('.ryviu-review-start-container').html(html);
+          
+          var html = $('.ryviu-show-reviews', intermediate);
+          $('.ryviu-review-start-container').append(html);
+        },
+        error: function () {}
+      });
+      setTimeout(function(){
+        console.log("before load script");
+        $.getScript("https://ryviu-app.firebaseapp.com/client/reviews.js?shop=gentlemen-clothing.myshopify.com");
+        console.log("script loaded");
+      }, 3000);
+    }
+  </script>
+ 
+<!-- spurit_uev-added -->
+{% include 'spurit_uev-theme-snippet' %}
+<!-- /spurit_uev-added -->
+
+
+
+{% include 'social-login' %}			
+<!-- RYVIU APP -->
+<script src="https://ryviu-app.firebaseapp.com/client/reviews.js?shop=gentlemen-clothing.myshopify.com"></script>
+<!-- / RYVIU APP -->
+
+<!-- BEEKETINGSCRIPT CODE START -->{% include 'bk-tracking' %}<!-- BEEKETINGSCRIPT CODE END -->
   {%- include 'pluginspeed-footer' -%}
-  </body>
+  
+  <script>  
+  if(Storage !== undefined) {
+
+    {% if template contains 'collection' %}
+      sessionStorage.collection = "{{ collection.url }}";
+    {% endif %}
+
+    {% if template contains 'product' %}
+      sessionStorage.collection = "/collections/all";
+    {% endif %}
+
+    {% if template contains 'cart' %}
+      document.getElementById("continue-shopping").href = sessionStorage.collection;
+    {% endif %}
+
+    }
+</script>
+  
+      {% if customer.tags.size > 0 %}
+        {% include 'fox-wholesale' %}
+      {% endif %}
+    
+<script async type="text/javascript" src="https://admin.thesearchit.com/app/SearchItInit.bundle.js?shop=gentlemen-clothing.myshopify.com"></script>
+
+
+
+<script src="//cdn.codeblackbelt.com/js/modules/full-page-zoom/main.min.js?shop=gentlemen-clothing.myshopify.com"></script>
+<script src="//cdn.codeblackbelt.com/js/modules/video-background/main.min.js?shop=gentlemen-clothing.myshopify.com"></script>
+</body>
 </html>
 {%- endcapture non_minified_html -%}
 {%- assign minifier = 'pluginspeed-minify-html' -%}

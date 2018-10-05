@@ -1,1 +1,0 @@
-console.log("hello mate"),console.log("hello too mate"),ahaha;
