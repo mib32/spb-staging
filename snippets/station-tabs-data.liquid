@@ -1,0 +1,59 @@
+{%- capture tabs -%}
+  9611^^Disclaimer^^<h1>Disclaimer:&nbsp;</h1>
+<p>These are collectable items, and in most cases we only have one; due to age the condition may vary from fair to like new.We do not guarantee condition statues, however please be aware that dents, creases, writing along borders may be present. We will try our best to provide a valid assessment. Please contact seller with any concerns, prior to purchase, at the time of purchase, or once you receive the item within 24 hours.</p>
+<p>Artwork is Shipped Rolled Unless REQUESTED OTHERWISE</p>^^|33450688575,33497284671,33497546815,33449771071,401219341,401223053,443385933,33450262591,33450033215,33449377855,33450164287,62060298303|wall art,interior decor for the home,home decor,ideas for your home,gift ideas~~9985^^FAQs^^{{ pages.faqs.content }}^^|0|what is my art woth,custom prducts,what is a lithograph~~
+{%- endcapture -%}
+
+{%- assign tabs_array = tabs | strip | split: '~~' -%}
+{%- assign p_id_str = product.id | downcase -%}
+
+{%- for item in tabs_array -%}
+  {%- assign tab = item | split: '^^' -%}
+  {%- assign asn = tab[3] | split: '|' -%}
+  {%- assign h_t = false -%}
+
+  {%- assign p_ids = asn[0] | split: ',' -%}
+
+  {%- if asn[0] == '0' or p_ids contains p_id_str -%}
+    {%- assign h_t = true -%}
+  {%- endif -%}
+
+  {%- unless h_t -%}
+    {%- if asn[1] == '0' and product.collections.size > 0 -%}
+      {%- assign h_t = true -%}
+    {%- endif -%}
+  {%- endunless -%}
+
+  {%- unless h_t -%}
+    {%- assign col_ids = asn[1] | split: ',' -%}
+
+    {%- for c in product.collections -%}
+      {% assign c_id = c.id | downcase %}
+      {%- if col_ids contains c_id %}
+        {%- assign h_t = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endunless -%}
+
+  {%- unless h_t -%}
+    {%- assign tags = asn[2] | split: ',' -%}
+    {%- for t in tags -%}
+      {%- if product.tags contains t -%}
+        {%- assign h_t = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endunless -%}
+
+  {% if h_t %}
+  <div id="station-tabs-data-{{ tab[0] }}" class="station-tabs-data-item" style="display:none;">
+    <a id="st-link-{{ tab[1] | handleize }}" class="station-tabs-link" href="#{{ tab[1] | handleize }}"><span>{{ tab[1] }}</span></a>
+    <div id="st-{{ tab[1] | handleize }}" class="station-tabs-content">
+      <div class="station-tabs-content-inner">{{ tab[2] }}</div>
+    </div>
+  </div> 
+
+  {% endif %}
+{%- endfor -%}
+

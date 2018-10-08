@@ -1,32 +1,23 @@
-{% capture collection_title %}{{ collection.title }}{% endcapture %}
-
-<div class="section-header">
-  <h1 class="section-header--left">{{ collection_title }}</h1>
-  <div class="section-header--right">
-    <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}">{{ 'homepage.featured_collection_rows.more_in_collection' | t: collection_title: collection_title }} &rsaquo;</a>
+<div class="grid grid--no-gutters grid--uniform collection">
+  <div class="grid__item small--one-half medium-up--one-fifth">
+    {% if featured_collection.image %}
+      {% assign collection_image = featured_collection | img_url: '235x235', scale:2 %}
+    {% else %}
+      {% assign collection_image = featured_collection.products.first | img_url: '235x235', scale:2 %}
+    {% endif %}
+    <a href="{{ featured_collection.url }}" class="collection-card" style="background-image: url({{ collection_image }});">
+      <div class="collection-card__meta">
+        <p class="h1 collection-card__title">{{ featured_collection.title }}</p>
+        <p class="collection-card__subtext">{{ 'collections.general.view_all' | t }}</p>
+      </div>
+    </a>
   </div>
-</div>
-
-{% assign grid_item_width = 'large--one-fifth medium--one-half' %}
-{% assign width = '195' %}
-{% assign height = '175' %}
-
-<div class="grid">
-  {% if collection.products %}
+  {% for product in featured_collection.products limit: 4 %}
     {% comment %}
-      Default collection order
+      Hide the last product for a better mobile view
     {% endcomment %}
-    {% for product in collection.products limit:5 %}
-      {% include 'product-grid-item' with height: height, width: width %}
-    {% endfor %}
-
-  {% else %}
-    {% comment %}
-      Custom order collections by 'all-collections' linklist
-    {% endcomment %}
-    {% for product in collections[collection.handle].products limit:5 %}
-      {% include 'product-grid-item' with height: height, width: width %}
-    {% endfor %}
-                                                                                                     
-  {% endif %}
+    <div class="grid__item small--one-half medium-up--one-fifth{% if forloop.index == 4 %} small--hide{% endif %}">
+      {% include 'product-card', product: product %}
+    </div>
+  {% endfor %}
 </div>

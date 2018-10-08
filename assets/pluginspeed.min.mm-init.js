@@ -1,1 +1,0 @@
-var mmInit=!0;

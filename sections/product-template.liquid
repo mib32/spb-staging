@@ -1,301 +1,411 @@
-<div id="ProductSection" data-section-id="{{ section.id }}" data-section-type="product-template" data-zoom-toggle="zoom-in" data-zoom-enabled="{{ section.settings.product_image_zoom_enable }}" data-related-enabled="{{ section.settings.product_related_enable }}" data-social-sharing="{{ section.settings.social_sharing }}" data-show-compare-at-price="{{ section.settings.product_show_compare_at_price }}" data-stock="{{ section.settings.product_quantity_message }}" data-incoming-transfer="{{ section.settings.product_incoming_message }}">
-{% include 'breadcrumb' %}
-
-<div class="grid" itemscope itemtype="http://schema.org/Product">
+<div class="page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" data-ajax="{{ section.settings.enable_ajax }}" data-stock="{{ section.settings.stock_enable }}">
+  {% assign product_image_size = '480x480' %}
+  <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+  <meta itemprop="seller" content="{{ shop.name | escape }}" />
+  <link itemprop="availability" href="http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}">
+  <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/NewCondition" />
+  <span itemprop="price" content="{{ variant.price | money_without_currency }}">
+  <h1 itemprop="name">{{ product.title }}</h1>
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: '600x600' }}">
+  {%- if settings.product_vendor_enable -%}
+  <meta itemprop="brand" content="{{ product.vendor }}">
+  {%- endif -%}
 
-  <div class="grid-item large--two-fifths">
-    <div class="grid">
-      <div class="grid-item large--eleven-twelfths text-center">
-        <div class="product-photo-container" id="productPhotoContainer-{{ section.id }}">
-          {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-          {% for image in product.images %}
-            {% capture img_wrapper_id %}productPhotoWrapper-{{ section.id }}-{{ image.id }}{% endcapture %}
-            {% capture img_id %}productPhotoImg-{{ section.id }}-{{ image.id }}{% endcapture %}
+  {% comment %}
+    Get first variant, or deep linked one
+  {% endcomment %}
+  {% assign current_variant = product.selected_or_first_available_variant %}
 
-            <div class="lazyload__image-wrapper no-js product__image-wrapper{% unless image == featured_image %} hide{% endunless %}" id="{{ img_wrapper_id }}" style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;" data-image-id="{{ image.id }}">
-              {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-                <img id="{{ img_id }}"
-                  {% if forloop.first == true %}
-                  src="{{ image | img_url: '300x300' }}"
-                  {% endif %}
-                  class="cbb-loupe lazyload no-js lazypreload"
+  <div class="grid product-single">
+    <div class="grid__item {% if product.images.size > 1 %}medium-up--three-fifths{% else %}medium-up--one-half{% endif %}">
+      <div class="photos">
+        <div class="photos__item photos__item--main">
+          {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+          {%- for image in product.images -%}
+            <div class="product-single__photo product__photo-container product__photo-container-{{ section.id }} js{% unless image == featured_image %} hide{% endunless %}"
+                 id="ProductPhoto"
+                 style="max-width: {% include 'image-width' with image: image, width: 480 %}px;"
+                 data-image-id="{{ image.id }}">
+              <a href="{{ image | img_url: '1024x1024' }}"
+                 class="js-modal-open-product-modal product__photo-wrapper product__photo-wrapper-{{ section.id }}"
+                 style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;">
+                {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                <img class="lazyload{% unless image == featured_image %} lazypreload{% endunless %}"
+                  src="{{ image | img_url: '150x150' }}"
                   data-src="{{ img_url }}"
-                  data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                  data-widths="[180, 240, 360, 480, 720, 960, 1080, 1296, 1512, 1728, 2048]"
                   data-aspectratio="{{ image.aspect_ratio }}"
                   data-sizes="auto"
-                  alt="{{ image.alt | escape }}"
-                  {% if section.settings.product_image_zoom_enable %} data-zoom="{{ image | img_url: '1024x1024', scale: 2 }}"{% endif %}>
+                  alt="{{ image.alt | escape }}">
+              </a>
             </div>
-            {% if forloop.first == true %}
-              <noscript>
-                <img src="{{ image | img_url: '580x' }}"
-                  srcset="{{ image | img_url: '580x' }} 1x, {{ image | img_url: '580x', scale: 2 }} 2x"
-                  alt="{{ image.alt }}" style="opacity:1;">
-              </noscript>
-            {% endif %}
-          {% endfor %}
+          {%- endfor -%}
+          <noscript>
+            <a href="{{ featured_image | img_url: '1024x1024' }}">
+              <img src="{{ featured_image | img_url: product_image_size }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg-{{ section.id }}">
+            </a>
+          </noscript>
         </div>
-
         {% if product.images.size > 1 %}
-          <ul class="product-photo-thumbs grid-uniform" id="productThumbs-{{ section.id }}">
-
-            {% for image in product.images %}
-              <li class="grid-item medium-down--one-quarter large--one-quarter">
-                <a href="{{ image.src | img_url: '1024x1024', scale: 2 }}" class="product-photo-thumb product-photo-thumb-{{ section.id }}" data-image-id="{{ image.id }}">
-                  <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-                </a>
-              </li>
-            {% endfor %}
-
-          </ul>
+          <div class="photos__item photos__item--thumbs">
+            <div class="product-single__thumbnails product-single__thumbnails-{{ section.id }}{% unless product.images.size > 2 %} product-single__thumbnails--static{% endunless %}">
+              {% for image in product.images %}
+                <div class="product-single__thumbnail-item product-single__thumbnail-item-{{ section.id }}{% if image == featured_image %} is-active{% endif %}" data-image-id="{{ image.id }}">
+                  <a href="{{ image.src | img_url: product_image_size }}" data-zoom="{{ image.src | img_url: '1024x1024' }}" class="product-single__thumbnail product-single__thumbnail-{{ section.id }}">
+                    <img src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
         {% endif %}
-
+        {% if product.images.size > 2 %}
+          {% comment %}
+            Add SVG icon snippets to an object for custom slider arrows
+          {% endcomment %}
+          <script>
+            {% capture arrow_left %}{% include 'icon-arrow-left' %}{% endcapture %}
+            {% capture arrow_right %}{% include 'icon-arrow-right' %}{% endcapture %}
+            {% capture arrow_up %}{% include 'icon-arrow-up' %}{% endcapture %}
+            {% capture arrow_down %}{% include 'icon-arrow-down' %}{% endcapture %}
+            var sliderArrows = {
+              left: {{ arrow_left | json }},
+              right: {{ arrow_right | json }},
+              up: {{ arrow_up | json }},
+              down: {{ arrow_down | json }}
+            }
+          </script>
+        {% endif %}
       </div>
     </div>
-  </div>
 
-  <div class="grid-item large--three-fifths">
+    <div class="grid__item {% if product.images.size > 1 %}medium-up--two-fifths{% else %}medium-up--one-half{% endif %}" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      <div class="product-single__info-wrapper">
+        <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+        <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
-    <h1 class="h2" itemprop="name">{{ product.title }}</h1>
-    <div id='sca-ryviu-widget' class="ryviu-widget"></div>
-    {% assign current_variant = product.selected_or_first_available_variant %}
-	<span class="variant-barcode"> Item # {{ current_variant.barcode }}</span>
-    
-    {% if section.settings.product_vendor_enable %}
-      <p class="product-meta" itemprop="brand">{{ product.vendor }}</p>
-    {% endif %}
+        <div class="product-single__meta small--text-center">
+          {% if settings.product_vendor_enable %}
+            <p class="product-single__vendor">{{ product.vendor }}</p>
+          {% endif %}
 
-    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          <h1 itemprop="name" class="product-single__title">{{ product.title }}</h1>
+        
+          
+          {% capture the_snippet_review_avg %}{% include 'ssw-widget-avg-rate-profile-custom' %}{% endcapture %}
+          {% unless the_snippet_review_avg contains 'Liquid error' %}
+          {{ the_snippet_review_avg }}
+          {% endunless %}
+          
+          
+          <ul class="product-single__meta-list list--no-bullets list--inline">
+            <li id="ProductSaleTag-{{ section.id }}" class="{% unless product.compare_at_price > product.price %}hide{% endunless %}">
+              <div class="product-tag">
+                {{ 'products.product.on_sale' | t }}
+              </div>
+            </li>
+            <li>
+              {% unless product.compare_at_price_max > product.price %}
+                <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              {% endunless %}
+              <span id="ProductPrice-{{ section.id }}" class="product-single__price" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+                {{ current_variant.price | money }}
+              </span>
+            </li>
+            {% if product.compare_at_price_max > product.price %}
+              <li>
+                <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+                <s id="ComparePrice-{{ section.id }}" class="product-single__price product-single__price--compare">
+                  {{ current_variant.compare_at_price | money }}
+                </s>
+              </li>
+            {% endif %}
+            {% if section.settings.stock_enable %}
+              <li>
+                <span id="ProductStock-{{ section.id }}" class="product-single__stock {% unless current_variant.inventory_management and current_variant.inventory_quantity < 10 and current_variant.inventory_quantity > 0 or  current_variant.inventory_management and current_variant.inventory_quantity <= 0 and current_variant.incoming %} hide{% endunless %}">
+                  {% if current_variant.inventory_management %}
+                    {% if current_variant.inventory_quantity < 10 and current_variant.inventory_quantity > 0 %}
+                      {% assign qty = current_variant.inventory_quantity %}
+                      {{ 'products.product.stock_available' | t: count: qty }}
+                    {% elsif current_variant.inventory_quantity == 0 or current_variant.inventory_quantity < 0 and current_variant.incoming %}
+                      {% if current_variant.available %}
+                        {% assign date = current_variant.next_incoming_date | date: "%B %-d, %Y" %}
+                        {{ 'products.product.will_not_ship_until' | t: date: date  }}
+                      {% else %}
+                        {% assign date = current_variant.next_incoming_date | date: "%B %-d, %Y" %}
+                        {{ 'products.product.will_be_in_stock_after' | t: date: date  }}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                </span>
+              </li>
+            {% endif %}
+          </ul>
 
-      {% assign variant = product.selected_or_first_available_variant %}
+        </div>
 
-      <meta itemprop="priceCurrency" content="{{ shop.currency }}">
-      <meta itemprop="price" content="{{ variant.price | divided_by: 100.00 }}">
+        <hr>
 
-      <ul class="inline-list product-meta">
-        <li>
-          <span id="productPrice-{{ section.id }}" class="h1">
-            {% include 'price' with variant.price %}
-          </span>
-        </li>
-        {% if product.compare_at_price_max > product.price and section.settings.product_show_saved_amount %}
-        <li>
-          <span id="comparePrice-{{ section.id }}" class="sale-tag large">
-            {% assign compare_price = variant.compare_at_price %}
-            {% assign product_price = variant.price %}
-            {% include 'price-sale' %}
-          </span>
-        </li>
-        {% endif %}
-        {% if section.settings.product_reviews_enable %}
-          <li class="product-meta--review">
-            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-          </li>
-        {% endif %}
-      </ul>
+        {% capture "form_class" %}product-form{% if section.settings.enable_payment_button %} product-form--payment-button{% endif %}{%- endcapture %}
 
-      <hr id="variantBreak" class="hr--clear hr--small">
+        {% capture "form_id" %}AddToCartForm-{{ section.id }}{%- endcapture %}
 
-      <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+        {% form 'product', product, class:form_class, id:form_id %}
+          {% unless product.has_only_default_variant %}
+            {% for option in product.options_with_values %}
+              <div class="selector-wrapper js product-form__item">
+                <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
+                <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input"
+                  id="SingleOptionSelector-{{ forloop.index0 }}"
+                  data-name="{{ option.name }}"
+                  data-index="option{{ forloop.index }}">
+                  {% for value in option.values %}
+                    <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% endfor %}
+          {% endunless %}
 
-      <form action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm-{{ section.id }}">
-        <select name="id" id="productSelect-{{ section.id }}" class="product-variants product-variants-{{ section.id }}">
-          {% for variant in product.variants %}
-            {% if variant.available %}
-
-              <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
-
-            {% else %}
-              <option disabled="disabled">
-                {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+          <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
+            {% for variant in product.variants %}
+              <option {% if variant == current_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}" {% unless variant.available %} disabled="disabled" {% endunless %}>
+                {% if variant.available %}
+                  {{ variant.title }} - {{ variant.price | money_with_currency }}
+                {% else %}
+                  {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                {% endif %}
               </option>
+            {% endfor %}
+          </select>
+          <div class="product-form__item product-form__item--quantity">
+            <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+            <input type="number" id="Quantity" name="quantity" value="1" min="1" class="product-form__input product-form__quantity">
+          </div>
+          <div class="product-form__item product-form__item--submit">
+            <button type="submit"
+              name="add"
+              id="AddToCart-{{ section.id }}"
+              class="btn btn--full product-form__cart-submit{% unless current_variant.available %} btn--sold-out{% endunless %}{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}"
+              {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+              <span id="AddToCartText-{{ section.id }}">
+                {% unless current_variant.available %}
+                  {{ 'products.product.sold_out' | t }}
+                {% else %}
+                  {{ 'products.product.add_to_cart' | t }}
+                {% endunless %}
+              </span>
+            </button>
+            {% capture the_snippet_fave %}{% include 'socialshopwave-widget-fave' %}{% endcapture %}
+            {% unless the_snippet_fave contains 'Liquid error' %}
+            {{ the_snippet_fave }}
+            {% endunless %}
+            {% if section.settings.enable_payment_button %}
+              {{ form | payment_button }}
             {% endif %}
-          {% endfor %}
-        </select>
+          </div>
+        {% endform %}
 
-        {% if section.settings.product_quantity_enable %}
-          <label for="quantity" class="quantity-selector quantity-selector-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
-          <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
+        <hr>
+
+        <div class="rte product-single__description" itemprop="description">
+          {% assign formatted_description = product.description | replace: "Disclaimer: These are collectable items, and in most cases we only have one; due to age the condition may vary from fair to like new.We do not guarantee condition statues, however please be aware that dents, creases, writing along borders may be present. We will try our best to provide a valid assessment. Please contact seller with any concerns, prior to purchase, at the time of purchase, or once you receive the item within 24 hours. Artwork is Shipped Rolled Unless REQUESTED OTHERWISE", '' %}
+          
+          <div data-station-tabs-app>{{ formatted_description }}</div>
+        </div>
+        <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+        {% if section.settings.social_sharing_products %}
+          <hr>
+          {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
         {% endif %}
-
-        <button type="submit" name="add" id="addToCart-{{ section.id }}" class="btn">
-          <span class="icon icon-cart"></span>
-          <span id="addToCartText-{{ section.id }}">{{ 'products.product.add_to_cart' | t }}</span>
-        </button>
-
-        {% if section.settings.product_quantity_message%}
-          <span id="variantQuantity-{{ section.id }}" class="variant-quantity {% if variant.inventory_management and variant.inventory_quantity < 10 and variant.inventory_quantity > 0 %} is-visible{% endif %}">
-           {% if variant.inventory_management and variant.inventory_quantity < 10 and variant.inventory_quantity > 0 %}
-              {% assign qty = variant.inventory_quantity %}
-              {{ 'products.product.only_left' | t: count: qty }}
-            {% endif %}
-          </span>
-        {% endif %}
-
-        {% if section.settings.product_incoming_message %}
-          <span id="variantIncoming-{{ section.id }}" class="variant-quantity {% if variant.inventory_management and variant.inventory_quantity <= 0 and variant.incoming %} is-visible{% endif %}">
-            {% if variant.inventory_management and variant.inventory_quantity == 0 or variant.inventory_quantity < 0 and current_variant.incoming %}
-              {% if variant.available %}
-                {% assign date = variant.next_incoming_date | date: "month_day_year" %}
-                {{ 'products.product.will_not_ship_until' | t: date: date  }}
-              {% else %}
-                {% assign date = variant.next_incoming_date | date: "month_day_year" %}
-                {{ 'products.product.will_be_in_stock_after' | t: date: date }}
-              {% endif %}
-            {% endif %}
-          </span>
-        {% endif %}
-
-      </form>
-      
-      <hr>
-
+          {% capture the_snippet_comment %}{% include 'ssw-widget-comment' %}{% endcapture %}
+          {% unless the_snippet_comment contains 'Liquid error' %}
+          {{ the_snippet_comment }}
+          {% endunless %}
+      </div>
     </div>
-
-    <div class="product-description rte" itemprop="description">
-      {{ product.description }}
-    </div>					
-      
-
-    {% if section.settings.social_sharing_products %}
-      {% include 'social-sharing' %}
-    {% endif %}
-
+      {% capture the_snippet_reviews %}{% include 'socialshopwave-widget-recommends' with 1 %}{% endcapture %}
+      {% unless the_snippet_reviews contains 'Liquid error' %}
+      {{ the_snippet_reviews }}
+      {% endunless %}
   </div>
-</div>
-  
-
-              
-  
-{% if section.settings.related_products_enable %}
-  {% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
-  {% include 'related-products' %}
-{% endif %}
-
-{% if section.settings.product_reviews_enable %}
-  <hr>
-  <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
-{% endif %}
 
 {% unless product == empty %}
   <script type="application/json" id="ProductJson-{{ section.id }}">
     {{ product | json }}
   </script>
-  {% if section.settings.product_quantity_message or section.settings.product_incoming_message %}
+  {% if section.settings.stock_enable %}
     <script type="application/json" id="VariantJson-{{ section.id }}">
       [
         {% for variant in product.variants %}
           {
-             "incoming": {% if variant.incoming == 'null' or variant.next_incoming_date == null %}false{% else %}{{ variant.incoming | default: false | json }}{% endif %},
-             "next_incoming_date": {{ variant.next_incoming_date | date: format: 'month_day_year' | json }}
+             "incoming": {{ variant.incoming | default: false | json }},
+             "next_incoming_date": {{ variant.next_incoming_date | date: format: 'month_day_year' | json }},
+             "inventory_policy": {{ variant.inventory_policy | json }},
+             "inventory_quantity": {{ variant.inventory_quantity | json }}
           }{% unless forloop.last %},{% endunless %}
         {% endfor %}
       ]
     </script>
   {% endif %}
 {% endunless %}
-</div>
-<div class="ryviu-questions-answers" product-handle="{{product.handle}}"></div>
-<!-- RYVIU APP -->
-            <div id="sca-ryviu-show-reviews" class="ryviu-show-reviews" product-handle="{{product.handle}}">{{product.metafields.ryviu.reviews}}</div>
-            <!-- / RYVIU APP -->
 
-{% comment %} Added by Adam B ( Shopify Theme Support) September 7 2018 {% endcomment %}
-{% if product.variants.size > 1 %}
 <script>
-  var variantImages = {},
-    thumbnails,
-    variant,
-    variantImage,
-    optionValue,
-    productOptions = [];
-    {% for variant in product.variants %}
-       variant = {{ variant | json }};
-       if ( typeof variant.featured_image !== 'undefined' && variant.featured_image !== null ) {
-         variantImage =  variant.featured_image.src.split('?')[0].replace(/http(s)?:/,'');
-         variantImages[variantImage] = variantImages[variantImage] || {};
-         {% for option in product.options %}
-         
-           {% assign option_value = variant.options[forloop.index0] %}
-           {% assign option_key = 'option-' | append: forloop.index0 %}
-         	
-           if (typeof variantImages[variantImage][{{ option_key | json }}] === 'undefined') {
-             variantImages[variantImage][{{ option_key | json }}] = {{ option_value | json }};
-           }
-           else {
-             var oldValue = variantImages[variantImage][{{ option_key | json }}];
-             if ( oldValue !== null && oldValue !== {{ option_value | json }} )  {
-               variantImages[variantImage][{{ option_key | json }}] = null;
-             }
-           }
-         {% endfor %}
-       }
-       productOptions.push(variant);
-    {% endfor %}
-</script> 
-{% endif %}
+  {% comment %} 
+  var ssw_review_tab = `<a id="st-link-reviews" class="station-tabs-link" href="#reviews" role="tab" aria-controls="st-reviews" aria-selected="true" tabindex="0"><span>Reviews</span></a>
+<div id="st-reviews" class="station-tabs-content is-active" role="tabpanel" aria-labelledby="st-link-reviews" aria-hidden="true">
+<div class="station-tabs-content-inner">
+  
+</div>
+</div>`;
+  
+  sswRun(function(){
+    ssw('div#st-disclaimer').after(ssw_review_tab);
+    ssw('div#st-reviews .station-tabs-content-inner').html(ssw('div#ssw-widget-recommends-html'));
+  });
+  ssw(document).on('click','a#st-link-reviews', function(){ ssw('div#station-tabs > .is-active').removeClass('is-active'); ssw(this).addClass('is-active'); ssw('div#st-reviews').addClass('is-active'); });
+  
+  {% endcomment %}
+
+
+  sswRun(function() {
+  	var sswInterval = setInterval(function() {
+    	if (ssw('#ssw-widget-recommends-html #ssw-reviews-content').length) {
+          ssw('<a id="st-link-reviews" class="station-tabs-link ssw-custom-station-tab" href="#reviews" role="tab" aria-controls="st-reviews" aria-selected="false" tabindex="-1"><span>Reviews</span></a>').appendTo('#station-tabs')
+          ssw('<div class="station-tabs-content" id="st-reviews" role="tabpanel" aria-labelledby="st-link-reviews" aria-hidden="true"><div class="station-tabs-content-inner"></div></div>').appendTo('#station-tabs')
+          ssw('<a id="st-link-questions" class="station-tabs-link ssw-custom-station-tab" href="#questions" role="tab" aria-controls="st-questions" aria-selected="false" tabindex="-1"><span>Questions</span></a>').appendTo('#station-tabs')
+          ssw('<div class="station-tabs-content" id="st-questions" role="tabpanel" aria-labelledby="st-link-questions" aria-hidden="true"><div class="station-tabs-content-inner"></div></div>').appendTo('#station-tabs')
+          ssw('#ssw-reviews-content').appendTo('#st-reviews .station-tabs-content-inner');
+          ssw('span.ssw-add-recommend').appendTo('#st-reviews .station-tabs-content-inner');
+          ssw('#ssw-questions-content').appendTo('#st-questions .station-tabs-content-inner');
+          ssw('span.ssw-ask-question').appendTo('#st-questions .station-tabs-content-inner');
+          ssw('.ssw-custom-station-tab').on('click', function(event) {
+              var handleClickedTab = ssw(this).attr('aria-controls');
+              event.preventDefault();
+              ssw('.station-tabs-link').removeClass('is-active');
+              ssw('.station-tabs-content').removeClass('is-active');
+              ssw(this).addClass('is-active');
+              ssw('#' + handleClickedTab).addClass('is-active');
+          });
+          ssw('.btn.button.ssw-question-add-review').on('click', function() {
+
+              ssw('div#ssw-review-simple-html').slideToggle();
+          });
+          ssw('#ssw-widget-recommends-html').hide();
+          clearInterval(sswInterval);
+        }
+    },300);
+  });
+  
+  sswRun(function(){
+    var intervalID = setInterval(function(){
+      if(ssw(".ssw-stars.ssw-stars-large").length){
+        ssw(".ssw-stars.ssw-stars-large").on('click', function() {
+          ssw('a[aria-controls="st-reviews"]').click();
+          ssw('html, body').animate({
+            scrollTop: ssw("#station-tabs").offset().top
+          }, 1000);
+        })
+        clearInterval(intervalID);
+      }
+    },1000);
+  });
+  
+  sswRun(function(){
+    var intervalID = setInterval(function(){
+      if(ssw(".ssw-stars.ssw-stars-large").length){
+        ssw(".ssw-question-count").on('click', function() {
+          ssw('a[aria-controls="st-questions"]').click();
+          ssw('html, body').animate({
+            scrollTop: ssw("#station-tabs").offset().top
+          }, 1000);
+        })
+        clearInterval(intervalID);
+      }
+    },1000);
+  });
+
+</script>
+
 
 {% schema %}
-  {
-    "name": "Product",
-    "class": "product-template-section",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "product_image_zoom_enable",
-        "label": "Enable image zoom"
+{
+  "name": {
+    "de": "Produktseiten",
+    "en": "Product pages",
+    "es": "Páginas de productos",
+    "fr": "Pages de produits",
+    "it": "Pagine di prodotto",
+    "ja": "商品ページ",
+    "pt-BR": "Páginas de produtos"
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_ajax",
+      "label": {
+        "de": "Auf der aktuellen Seite bleiben, wenn Artikel hinzugefügt wird",
+        "en": "Stay on current page when item is added to cart",
+        "es": "Permanece en la página actual al agregar el artículo al carrito.",
+        "fr": "Rester sur la page actuelle lorsqu'un article est ajouté au panier",
+        "it": "Resta sulla stessa pagina quando l'articolo viene aggiunto al carrello",
+        "ja": "アイテムがカートに追加されたときに現在のページにとどまる",
+        "pt-BR": "Permanecer na página atual quando o item for adicionado ao carrinho"
       },
-      {
-        "type": "checkbox",
-        "id": "product_quantity_enable",
-        "label": "Show quantity selector"
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "stock_enable",
+      "label": {
+        "de": "Bestand anzeigen, wenn weniger als 10 Produkte verfügbar sind",
+        "en": "Show stock when less than 10 products available",
+        "es": "Mostrar inventario cuando haya menos de 10 productos disponibles.",
+        "fr": "Afficher le stock lorsque moins de 10 produits sont disponibles",
+        "it": "Mostra quantità prodotti disponibili quando ne restano meno di 10",
+        "ja": "商品の在庫数が10個以下の場合は在庫を表示する",
+        "pt-BR": "Exibir estoque quando há menos de 10 produtos disponíveis"
       },
-      {
-        "type": "checkbox",
-        "id": "product_quantity_message",
-        "label": "Show remaining quantity message"
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_payment_button",
+      "label": {
+        "de": "Dynamischen Checkout Button anzeigen",
+        "en": "Show dynamic checkout button",
+        "es": "Mostrar botón de pago dinámico",
+        "fr": "Afficher le bouton de passage à la caisse dynamique",
+        "it": "Mostra pulsante di check-out dinamico",
+        "ja": "動的チェックアウトボタンを表示する",
+        "pt-BR": "Exibir botão dinâmico de finalização da compra"
       },
-      {
-        "type": "checkbox",
-        "id": "product_incoming_message",
-        "label": "Show incoming stock transfer message when sold out"
+      "info": {
+        "de": "Lässt Kunden direkt bezahlen mit bekannten Bezahlmethoden. [Mehr erfahren](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+        "en": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+        "es": "Permite a los clientes pagar directamente usando un método de pago familiar. [Más información](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+        "fr": "Permet à vos clients de passer à la caisse en choisissant un moyen de paiement qui leur est familier. [En savoir plus](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+        "it": "Fai in modo che i clienti effettuino il check-out direttamente utilizzando un metodo di pagamento a loro conosciuto. [Maggiori informazioni](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+        "ja": "使い慣れた決済方法を使用して、お客様に直接チェックアウトしてもらいましょう。[もっと詳しく](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+        "pt-BR": "Permite que os clientes finalizem os pedidos na hora usando um método de pagamento salvo. [Saiba mais](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
       },
-      {
-        "type": "checkbox",
-        "id": "product_vendor_enable",
-        "label": "Show product vendor"
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "social_sharing_products",
+      "label": {
+        "de": "Teilen von Produkten aktivieren",
+        "en": "Enable product sharing",
+        "es": "Habilitar compartir productos",
+        "fr": "Activer le partage de produits",
+        "it": "Permetti condivisione del prodotto",
+        "ja": "商品の共有を有効にする",
+        "pt-BR": "Habilite o compartilhamento de produtos"
       },
-      {
-        "type": "checkbox",
-        "id": "product_show_saved_amount",
-        "label": "Show saved amount",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "product_show_compare_at_price",
-        "label": "Show compare at price",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "related_products_enable",
-        "label": "Show related products"
-      },
-      {
-        "type": "checkbox",
-        "id": "social_sharing_products",
-        "label": "Enable product sharing",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "product_reviews_enable",
-        "label": "Enable product reviews",
-        "info": "Install the free Shopify [Product Reviews](https:\/\/apps.shopify.com\/product-reviews) app to add product reviews."
-      }
-    ]
-  }
+      "default": true
+    }
+  ]
+}
 {% endschema %}

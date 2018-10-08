@@ -1,0 +1,10 @@
+
+{% if template contains 'product' %}    
+	{% assign amp_path = 'products/' | append: product.handle %}
+{% endif %}
+{% if template contains 'collection' %}    
+	{% assign amp_path = 'collections/' | append: collection.handle %}
+{% endif %}
+{% if amp_path %}    
+<link rel="amphtml" href="{{ 'https://theartgalleryshopnyc.com/a/amp/' | append: amp_path  }}">
+{% endif %}
